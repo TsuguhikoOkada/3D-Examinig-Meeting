@@ -53,7 +53,7 @@ public class Slot : MonoBehaviour
     /// <param name="item"></param>
     void UpdateImage(Item item)
     {
-        image.sprite = item.m_slotsprite; // Slotのimageにクリックしたアイテムのspriteを入れる
+        image.sprite = item.sprite; // Slotのimageにクリックしたアイテムのspriteを入れる
     }
     
 }

@@ -2,10 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickupObj : Item
+public class PickupObj : MonoBehaviour
 {
+    [SerializeField] Item.Type itemType = default;
 
-    [SerializeField, Header("アイテムの種類")] Item item = default;
+    Item item = default;
+
+    void Start()
+    {
+        //itemTypeに応じてitemを生成する(アイテムに対してTypeとSpriteを設定する）
+        item = ItemGenerater.instance.Spwan(itemType);
+    }
 
     /// <summary>
     /// クリックしてステージにあるアイテムを消す
