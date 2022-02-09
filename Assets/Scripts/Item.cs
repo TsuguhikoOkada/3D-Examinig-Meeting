@@ -6,13 +6,16 @@ using UnityEngine;
 [Serializable]
 public class Item : MonoBehaviour
 {
-    // アイテムの種類を列挙型で並べている
+    /// <summary>
+    /// アイテムの種類をenumで整理
+    /// </summary>
     public enum Type
     {
         Cube,
         Ball,
     }
 
-    public Type m_type; // 種類
-    public Sprite m_slotsprite; // Slotに表示する画像
+    [SerializeField,Header("アイテムの種類")]public Type m_type;
+
+    [SerializeField,Header("スロットに表示するスプライト画像")]public Sprite m_slotsprite;
 }

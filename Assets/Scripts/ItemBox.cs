@@ -7,7 +7,9 @@ public class ItemBox : MonoBehaviour
 
     [SerializeField, Header("アイテムスロット")] Slot[] slots = default;
 
-    // とこでも実行可能にしている
+    /// <summary>
+    /// ItemBoxのインスタンスを生成
+    /// </summary>
     public static ItemBox instance;
 
     private void Awake()
@@ -18,24 +20,21 @@ public class ItemBox : MonoBehaviour
         }
     }
 
-
-    // PickupObjがクリックされたら、スロットにアイテムを入れる
-
+    /// <summary>
+    ///  アイテムをクリックしたら、スロットにアイテムを入れていく
+    /// </summary>
+    /// <param name="item"></param>
     public void SetItem(Item item)
     {
-        slots[0].SetItem(item);
-    }
+        foreach (Slot slot in slots) // slotsの数だけ回す
+        {
+            if (slot.IsEmpty())
+            {
+                slot.SetItem(item); // スロットにアイテムを入れる
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+                break; // 空のスロットにアイテムを入れたらループを抜ける
+            }
+        }
+            
     }
 }
