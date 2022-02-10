@@ -9,18 +9,29 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
-    /// <summary>スロットにアイテムを持たせる(初期はデフォルト設定)</summary>/// 
+    /// <summary>
+    /// スロットにアイテムを持たせる(初期はデフォルト設定)
+    /// </summary>/// 
     Item _slotitem = default;
 
-    /// <summary>アイテムを受け取ったら画像をスロットに表示するため初期はデフォルト設定</summary>/// 
-    Image image = default;
+    /// <summary>
+    /// アイテムを受け取ったら画像をスロットに表示するため初期はデフォルト設定
+    /// </summary>/// 
+    [SerializeField] Image image = default;
 
     /// <summary>
     /// 
     /// </summary>
+    [SerializeField] GameObject _bgPanel = default;
+
      void Awake()
     {
-        image = GetComponent<Image>(); // imageにimageコンポーネントを入れる
+        //image = GetComponent<Image>(); // imageにimageコンポーネントを入れる
+    }
+
+    void Start()
+    {
+        _bgPanel.SetActive(false); 
     }
 
     /// <summary>
@@ -55,5 +66,27 @@ public class Slot : MonoBehaviour
     {
         image.sprite = item.sprite; // Slotのimageにクリックしたアイテムのspriteを入れる
     }
-    
+
+    /// <summary>
+    /// 選択されているかを調べる
+    /// </summary>
+    /// <returns></returns>
+    public bool Onselected()
+    {
+
+        if (_slotitem == null)
+        {
+            return false;
+        }
+
+        _bgPanel.SetActive(true);
+
+        return true;
+
+    }
+
+    public void HideBGPanel()
+    {
+        _bgPanel.SetActive(false);
+    }
 }

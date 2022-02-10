@@ -7,9 +7,12 @@ public class ItemBox : MonoBehaviour
 
     [SerializeField, Header("アイテムスロット")] Slot[] slots = default;
 
+    [Tooltip("Checkするために敢えてnullにしているので、この項目には何も入れないこと")]
+    [SerializeField,Header("どのスロットが選択されているか")]Slot _selectedSlot = null;
+
     /// <summary>
     /// ItemBoxのインスタンスを生成
-    /// </summary>
+    /// </summary>///
     public static ItemBox instance;
 
     private void Awake()
@@ -17,6 +20,9 @@ public class ItemBox : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+
+            // slot子オブジェクトにSlotスクリプトを入れる
+            slots = GetComponentsInChildren<Slot>();
         }
     }
 
@@ -36,5 +42,22 @@ public class ItemBox : MonoBehaviour
             }
         }
             
+    }
+
+    public void OnSelectSlot(int position)
+    {
+        // 一旦全てのスロットの選択パネルを非表示
+        foreach (Slot slot in slots)
+        {
+            slot.HideBGPanel();
+        }
+
+        // 選択されたスロットの選択パネルを表示
+        if (slots[position].Onselected())
+        {
+            _selectedSlot = slots[position];
+        }
+
+        
     }
 }
