@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ItemGenerater : MonoBehaviour
 {
-    [SerializeField] ItemListEntity itemListEntity = default;
+    /// <summary>データベースを入れる箱</summary>///
+    [SerializeField,Header("アイテムデータベース")] ItemListEntity itemListEntity = default;
 
-    // ItemGeneraterのインスタンス生成
+    /// <summary>ItemGeneraterのインスタンス生成</summary>///
     public static ItemGenerater instance;
 
     void Awake()
