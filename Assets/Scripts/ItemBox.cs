@@ -7,8 +7,9 @@ public class ItemBox : MonoBehaviour
 
     [SerializeField, Header("アイテムスロット")] Slot[] slots = default;
 
-    [Tooltip("Checkするために敢えてnullにしているので、この項目には何も入れないこと")]
-    [SerializeField,Header("どのスロットが選択されているか")]Slot _selectedSlot = null;
+    [Tooltip("Checkするために敢えてnullにしているので、この項目には何も入れてない")]
+    [SerializeField,Header("どのスロットが選択されているか")]
+     Slot _selectedSlot = null;
 
     /// <summary>
     /// ItemBoxのインスタンスを生成
@@ -52,12 +53,46 @@ public class ItemBox : MonoBehaviour
             slot.HideBGPanel();
         }
 
+        _selectedSlot = null;
+
         // 選択されたスロットの選択パネルを表示
         if (slots[position].Onselected())
         {
             _selectedSlot = slots[position];
+        }   
+    }
+
+    /// <summary>
+    /// 試しにアイテムを使えるか調べる
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    public bool TryUseItem(Item.Type type)
+    {
+        // 選択されたスロットの有無を調べる
+        if (_selectedSlot == null)
+        {
+            return false;
+        }
+        if (_selectedSlot.GetItem()._type == type)
+        {
+            _selectedSlot.SetItem(null);
+            _selectedSlot.HideBGPanel();
+            _selectedSlot = null;
+
+            return true;
         }
 
-        
+        return false;
+
+    }
+
+    public Item GetSelectedItem()
+    {
+        if (_selectedSlot == null)
+        {
+            return null;
+        }
+        return _selectedSlot.GetItem();
     }
 }

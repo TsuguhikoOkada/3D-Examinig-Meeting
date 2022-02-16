@@ -24,13 +24,25 @@ public class ItemGenerater : MonoBehaviour
 
         foreach (Item item in itemListEntity.itemList)
         {
-            if (item.type == type)
+            if (item._type == type)
             {
-                return new Item(item.type, item.sprite);
+                return new Item(item._type, item._sprite , item._zoomObj);
             }
         }
 
         return null;
 
+    }
+
+    public GameObject GetZoomItem(Item.Type type)
+    {
+        foreach (Item item in itemListEntity.itemList)
+        {
+            if (item._type == type)
+            {
+                return item._zoomObj;
+            }
+        }
+        return null;
     }
 }

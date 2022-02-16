@@ -57,6 +57,10 @@ public class Slot : MonoBehaviour
 
         UpdateImage(item);
     }
+    public Item GetItem()
+    {
+        return _slotitem;
+    }
 
     /// <summary>
     /// 取ったアイテムを画像としてスロットに表示
@@ -64,7 +68,14 @@ public class Slot : MonoBehaviour
     /// <param name="item"></param>
     void UpdateImage(Item item)
     {
-        image.sprite = item.sprite; // Slotのimageにクリックしたアイテムのspriteを入れる
+        if (item == null)
+        {
+            image.sprite = null;
+        }
+        else
+        {
+            image.sprite = item._sprite; // Slotのimageにクリックしたアイテムのspriteを入れる
+        }
     }
 
     /// <summary>
