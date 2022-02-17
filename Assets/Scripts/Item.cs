@@ -13,6 +13,7 @@ public class Item
     {
         Cube,
         Ball,
+        Loupe
     }
 
     [SerializeField,Header("アイテムの種類")]public Type _type;

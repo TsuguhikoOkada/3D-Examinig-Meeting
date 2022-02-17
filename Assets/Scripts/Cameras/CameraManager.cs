@@ -12,14 +12,10 @@ public class CameraManager : MonoBehaviour
     [SerializeField] GameObject _rightArrowObj;
     [SerializeField] GameObject _backArrowObj;
 
-    // どこにどのカメラを有効にするか?
-    // Mainの全体を回転するカメラ
     // ズーム表示時のカメラ
     Camera _carrentCamera;
     // 保持するカメラ
     Camera _mainCamera;
-    // Move時のカメラ
-
     // 全体カメラのポジションを作成
     [SerializeField, Header("回転カメラポジション")] Transform[] _mainCameraTransforms ;
 
